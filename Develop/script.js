@@ -3,7 +3,7 @@
         let time = $(this).parent().attr('id');
 
         localStorage.setItem(time, inputText);
-        
+        console.log(time);
         console.log(inputText);
         console.log($(this));
         // $('notify').addClass('show');
@@ -12,7 +12,7 @@
         // }, 5000); 
     });
 
-    let todaysDate = moment().format("dddd, MMMM Do YYYY")
+    let todaysDate = moment().format("dddd, MMMM Do YYYY");
     let currentHour = moment().hours();
     console.log(currentHour, " currentHour variable");
 
@@ -30,7 +30,7 @@
         
     ]
 
-    function printInputBlocks() {
+    function blockBuilder() {
         for (let i = 0; i < timeInputs.length; i++) {
             
             let timeInp = timeInputs[i].time
@@ -42,7 +42,6 @@
                 </div>`)
             
             $(".container").append(timeBlockEl);
-   
    
         }
         
@@ -75,4 +74,4 @@
 
 
     jumboTime();
-    printInputBlocks();
+    blockBuilder();
