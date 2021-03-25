@@ -1,99 +1,74 @@
+    $('.saveBtn').on('click', function() {
+        let inputText = $(this).siblings('.decription').val() ;
+        let time = $(this).parent().attr('id');
 
-// Save functionality
-$(document).ready(function(){
-    
+        localStorage.setItem(time, inputText);
+        
+        console.log(inputText);
+        console.log($(this));
+        // $('notify').addClass('show');
+        // setTimeout(function(){
+        //     $('notify').removeClass('show');
+        // }, 5000); 
+    });
+
     let todaysDate = moment().format("dddd, MMMM Do YYYY")
-
     let currentHour = moment().hours();
-    
     console.log(currentHour);
 
     let timeInputs = [
-        { time: 7, input: "" },
-        { time: 8, input: "" },
-        { time: 9, input: "Wake up" },
+        
+        { time: 09, input: "" },
         { time: 10, input: "" },
-        { time: 11, input: "Go to work" },
+        { time: 11, input: "" },
         { time: 12, input: "" },
-        { time: 13, input: "" },
-        { time: 14, input: "" },
-        { time: 15, input: "" },
-        { time: 16, input: "" },
-        { time: 17, input: "" },
-        { time: 13, input: "" },
-        { time: 18, input: "" },
-        { time: 19, input: "" },
-        { time: 20, input: "" },
-        { time: 21, input: "" },
-        { time: 22, input: "" },
-        { time: 23, input: "" },
+        { time: 01, input: "" },
+        { time: 02, input: "" },
+        { time: 03, input: "" },
+        { time: 04, input: "" },
+        { time: 05, input: "" },
+        
     ]
-
-
 
     function printInputBlocks() {
         for (let i = 0; i < timeInputs.length; i++) {
-            console.log(timeInputs[i].time, timeInputs[i].input);
-            var inputGroup = $('<div class="input-group row time-block">');
             
-            var inputGroupPrepend = $('<div class="hour input-group-prepend"><span class="input-group-text">' + timeInputs[i].time + ':00' + '</span>');
-            var inputEl = $('<input type="text" class="form-control" value="' + timeInputs[i].input + '">');
-            var butBuild = $('<button class="btn saveBtn">Save</button>');
-
-            inputGroup.append(inputGroupPrepend).append(inputEl).append(butBuild);
-            $(".container").append(inputGroup);
+            let timeInp = timeInputs[i].time
+            let timeBlockEl = $(`<div class="row time-block " id="${timeInp}">
+                <div class="hour col-md-1">${timeInp}</div>
+                <textarea class="col-md-9 decription past"></textarea>
+                <button class="col-md-1 btn saveBtn" type="button">Save</button>
+                </div>`)
+            
+            $(".container").append(timeBlockEl);
         }
     }
-
-
-
-
-
-
-
-    $('.saveBtn').on('click', function() {
-        let value = $(this).siblings('.description').val();
-        let time = $(this).parent().attr('id');
-        localStorage.setItem(time, value);
-        console.log(time, value)
-        $('notification').addClass('show');
-        setTimeout(function(){
-            $('notification').removeClass('show');
-        }, 5000); 
-    });
 
     function jumboTime(){
         $('#currentDay').text(todaysDate);
     }
 
-    function timeUpdate() {
-
-        currentH = moment().hours();
+    function timeUpdate(){
 
         $('.time-block').each(function (){
 
-            let blockH = parseInt($(this).attr('id').split('-')[1]);
-
-
-            if (blockH < currentH) {
-                $(this).addClass('past'); 
+            let blockH = parseInt($(this).attr('id'));
+            console.log(blockH)
+            if (blockH < currentHour) {
+                $(this).textarea.addClass('past'); 
             } else if (blockH === currentH) {
     
-                $(this).removeClass('past'); 
-                $(this).addClass('present'); 
+                $(this).textarea.removeClass('past'); 
+                $(this).textarea.addClass('present'); 
             } else {
-                $(this).removeClass('past'); 
-                $(this).removeClass('present'); 
-                $(this).addClass('future'); 
+                $(this).textarea.removeClass('past'); 
+                $(this).textarea.removeClass('present'); 
+                $(this).textarea.addClass('future'); 
                 
-            }
-                
+            }      
         })
-
     }
 
     jumboTime();
     printInputBlocks();
     // timeUpdate();
-
-});
