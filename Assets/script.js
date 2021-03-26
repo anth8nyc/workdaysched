@@ -1,12 +1,5 @@
-
-let todaysDate = moment().format("dddd, MMMM Do YYYY");
-let currentHour = moment().hours();
-console.log(currentHour, " currentHour variable");
-
-let saveBtnEl = document.querySelector(".saveBtn")
-
 let timeInputs = [
-        
+    
     { time: 09, input: "" },
     { time: 10, input: "" },
     { time: 11, input: "" },
@@ -15,9 +8,16 @@ let timeInputs = [
     { time: 14, input: "" },
     { time: 15, input: "" },
     { time: 16, input: "" },
-    { time: 17, input: "" },
-        
+    { time: 17, input: "" },  
 ]
+
+let todaysDate = moment().format("dddd, MMMM Do YYYY");
+let currentHour = moment().hours();
+
+let saveBtnEl = document.querySelector(".saveBtn");
+
+jumboTime();
+blockBuilder();
 
 function jumboTime(){
     $('#currentDay').text(todaysDate);
@@ -55,8 +55,6 @@ function blockBuilder() {
             
         $(".container").append(timeBlockEl);
    
-        console.log(timeInp);
-        console.log(antePostTime);
     };
 
     timeUpdate();
@@ -75,11 +73,8 @@ function timeUpdate(){
         } else {
             $(this).addClass('present');                     
         }      
-    })        
+    });        
 }
-
-jumboTime();
-blockBuilder();
 
 $('.saveBtn').on('click', function() {
 
@@ -87,19 +82,14 @@ $('.saveBtn').on('click', function() {
     let cTime = $(this).parent().attr('id');
         
     localStorage.setItem(cTime, inputText);
-    console.log(cTime);
-    console.log(inputText);    
-    console.log($(this));
-
-    let successEl = $(`<div class="container"><div class="alert alert-success col-4 align-self-center role="alert">
-        Event saved! <i class="fas fa-check"></i>
-        </div></div>`)
+    
+    let successEl = $(`<div class="container row no-gutters al justify-content-center mb-3">
+        <div class="row alert alert-success m-auto col-3 rounded-pill" role="alert">
+        <p class="m-auto p-auto">Event(s) saved!</p><i class="fas fa-check m-auto"></i></div>
+        </div>`)
 
     $(".tb").prepend(successEl);
     setTimeout(function(){
-        $(`.alert`).remove();
-    }, 2000); 
-            
+        $(`.al`).remove();
+    }, 2500); 
 });
-
- 
