@@ -1,5 +1,5 @@
 # Site Preview
-![Site Preview](./assets/schedulerdem.png)
+![Site Preview](./workdayassets/schedulerdem.png)
 
 ## About
 
@@ -11,4 +11,4 @@
 
   The following gif also demonstrates the application functionality:
 
-  ![A user clicks on slots on the color-coded calendar and edits the events.](./assets/schedulerdemo.gif)
+  ![A user clicks on slots on the color-coded calendar and edits the events.](./workdayassets/schedulerdemo.gif)
